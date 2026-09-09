@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E757B"/>
+      <stop offset="100%" stop-color="#175E63"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#FFF9F2"/>
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#tealGrad)"/>
+  <!-- Star accent -->
+  <path d="M46 14L47.5 18.5L52 20L47.5 21.5L46 26L44.5 21.5L40 20L44.5 18.5Z" fill="#F2C45B"/>
+  <!-- Letter A -->
+  <text x="32" y="44" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="900" font-size="34" fill="#FFF9F2" text-anchor="middle">A</text>
+  <!-- Small coral heart accent -->
+  <path d="M18 18 C18 15.5 20 14 22 14 C23.5 14 24.8 15 25 16 C25.2 15 26.5 14 28 14 C30 14 32 15.5 32 18 C32 21.5 25 25 25 25 C25 25 18 21.5 18 18 Z" fill="#E98979" transform="scale(0.6) translate(8, 6)"/>
+</svg>
