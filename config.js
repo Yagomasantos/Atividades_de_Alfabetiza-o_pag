@@ -8,10 +8,10 @@
 
 const CONFIG = {
   // LINK DE COMPRA: Substitua pela URL da sua página de pagamento/checkout
-  CHECKOUT_URL: "COLE_SEU_LINK_DE_COMPRA_AQUI",
+  CHECKOUT_URL: "https://pay.cakto.com.br/o5ez8zz_1096891",
 
   // LINK DE COMPRA COM ORDER BUMP (Se a sua plataforma gerar um link direto com o bump ativado)
-  CHECKOUT_URL_WITH_BUMP: "COLE_SEU_LINK_DE_COMPRA_AQUI",
+  CHECKOUT_URL_WITH_BUMP: "https://pay.cakto.com.br/o5ez8zz_1096891",
 
   // INFORMAÇÕES DO PRODUTO PRINCIPAL
   product: {

@@ -21,23 +21,20 @@ Se preferir rodar em um servidor web local (por exemplo com a extensão *Live Se
 
 ---
 
-## ⚙️ Onde Alterar os Links de Compra (Checkout)
+## ⚙️ Links de Compra (Checkout Cakto)
 
-Os links de compra estão **100% centralizados** no arquivo **`config.js`**:
+O link de checkout Cakto já está configurado e integrado:
+- **Link configurado:** `https://pay.cakto.com.br/o5ez8zz_1096891`
 
-1. Abra o arquivo **`config.js`** no seu editor.
-2. Localize as linhas:
-   ```javascript
-   // Link principal de compra (produto base: 250 páginas de alfabetização)
-   CHECKOUT_URL: "COLE_SEU_LINK_DE_COMPRA_AQUI",
+Para gerenciar ou alterar no futuro, acesse o arquivo **`config.js`**:
+```javascript
+// Link principal de compra
+CHECKOUT_URL: "https://pay.cakto.com.br/o5ez8zz_1096891",
 
-   // Link opcional com Order Bump (se a sua plataforma gerar link com o bump de +100 páginas já marcado)
-   CHECKOUT_URL_WITH_BUMP: "COLE_SEU_LINK_DE_COMPRA_AQUI",
-   ```
-3. Substitua `"COLE_SEU_LINK_DE_COMPRA_AQUI"` pelas URLs da sua plataforma (ex.: Kiwify, Hotmart, Eduzz, Braip, Cakto, etc.).
-4. Salve o arquivo. Automaticamente todos os botões da página direcionarão os clientes para os links corretos.
-
-> **Aviso de segurança:** Enquanto os links permanecerem como `"COLE_SEU_LINK_DE_COMPRA_AQUI"`, ao clicar no botão de compra, a página exibirá um modal informativo orientando a configuração em vez de redirecionar para um link quebrado.
+// Link com Order Bump (se desejar um link específico da Cakto com o bump ativado)
+CHECKOUT_URL_WITH_BUMP: "https://pay.cakto.com.br/o5ez8zz_1096891",
+```
+Todos os botões de compra da página (Hero, Oferta Principal e Barra Inferior Mobile) direcionam diretamente para a página de pagamento Cakto.
 
 ---
 
@@ -108,3 +105,11 @@ lading page/
 ├── README.md        # Documentação do projeto
 └── images/          # Imagens do produto e ilustrações
 ```
+
+## Atualização dos botões e da seleção
+
+O order bump mostra um X branco quando selecionado, inclusive por teclado. Os três botões de compra usam links diretos para a Cakto e funcionam mesmo sem JavaScript.
+
+Os links principal e com adicional são iguais nesta configuração. Marcar a opção na landing page altera a apresentação local, mas não transmite a seleção à Cakto. Configure o adicional no checkout; um link específico com o adicional pode ser definido em CHECKOUT_URL_WITH_BUMP, se disponível.
+
+Para atualizar a página publicada, substitua index.html, styles.css e app.js no projeto original e publique uma nova versão na Vercel.

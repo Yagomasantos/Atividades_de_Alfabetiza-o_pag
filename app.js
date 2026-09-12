@@ -5,8 +5,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   const CONFIG = window.APP_CONFIG || {
-    CHECKOUT_URL: "COLE_SEU_LINK_DE_COMPRA_AQUI",
-    CHECKOUT_URL_WITH_BUMP: "COLE_SEU_LINK_DE_COMPRA_AQUI",
+    CHECKOUT_URL: "https://pay.cakto.com.br/o5ez8zz_1096891",
+    CHECKOUT_URL_WITH_BUMP: "https://pay.cakto.com.br/o5ez8zz_1096891",
     product: {
       priceNumber: 14.99,
       price: "R$ 14,99"
@@ -104,13 +104,15 @@ function initOrderBump(config) {
     updatePricingState(e.target.checked);
   });
 
+  updatePricingState(bumpCheckbox.checked);
+
   // Permite clicar em todo o card do bump para facilitar no celular
   if (bumpBox) {
     bumpBox.addEventListener('click', (e) => {
-      // Se não clicou direto no input, inverte o estado
-      if (e.target !== bumpCheckbox && !e.target.closest('input')) {
+      // Se o clique foi fora do label e fora do input, inverte o estado manualmente
+      if (!e.target.closest('label') && !e.target.closest('input')) {
         bumpCheckbox.checked = !bumpCheckbox.checked;
-        updatePricingState(bumpCheckbox.checked);
+        bumpCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
       }
     });
   }
@@ -140,10 +142,10 @@ function initBuyButtons(config) {
   };
 
   const handleBuyClick = (e) => {
-    e.preventDefault();
     if (isCheckoutConfigured()) {
-      window.location.href = getTargetCheckoutUrl();
+      e.currentTarget.href = getTargetCheckoutUrl();
     } else {
+      e.preventDefault();
       openModal();
     }
   };
@@ -160,6 +162,14 @@ function initBuyButtons(config) {
     modal.setAttribute('hidden', '');
     document.body.style.overflow = '';
   };
+
+  const updateCheckoutLinks = () => {
+    if (isCheckoutConfigured()) {
+      buyButtons.forEach(btn => { btn.href = getTargetCheckoutUrl(); });
+    }
+  };
+  updateCheckoutLinks();
+  if (bumpCheckbox) bumpCheckbox.addEventListener('change', updateCheckoutLinks);
 
   buyButtons.forEach(btn => {
     btn.addEventListener('click', handleBuyClick);
