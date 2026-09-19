@@ -5,24 +5,24 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   const CONFIG = window.APP_CONFIG || {
-    CHECKOUT_URL: "COLE_SEU_LINK_DE_COMPRA_AQUI",
-    CHECKOUT_URL_WITH_BUMP: "COLE_SEU_LINK_DE_COMPRA_AQUI",
+    CHECKOUT_URL: "https://pay.cakto.com.br/o5ez8zz_1096891",
+    CHECKOUT_URL_WITH_BUMP: "https://pay.cakto.com.br/o5ez8zz_1096891",
     product: {
-      priceNumber: 14.99,
-      price: "R$ 14,99"
+      priceNumber: 12.99,
+      price: "R$ 12,99"
     },
     orderBump: {
-      priceNumber: 9.90,
-      price: "R$ 9,90"
+      priceNumber: 8.99,
+      price: "R$ 8,99"
     },
     images: {
-      heroProduct: "./images/a8968fc6-f1da-4332-89d3-373856552319.png",
-      math: "./images/934cffbc-d47f-45a9-839f-bb436209f000.png",
-      phrases: "./images/fbbab337-ca56-4a09-8812-75bbc17ad59f.png",
-      language: "./images/528316e3-5e6f-40e3-8a64-11914c7b0f1c.png",
-      syllables: "./images/090501d1-2149-4633-92ef-483e128c5759.png",
-      familyLearning: "./images/25782d27-0903-446c-9da4-b5c77a4cf67f.png",
-      homePrinting: "./images/082cd862-de89-444a-bf79-ee8464ae2d4b.png",
+      heroProduct: "./images/material-01.png",
+      math: "./images/material-12.png",
+      phrases: "./images/material-04.png",
+      language: "./images/material-03.png",
+      syllables: "./images/material-02.png",
+      familyLearning: "./images/material-07.png",
+      homePrinting: "./images/material-05.png",
     }
   };
 
@@ -57,7 +57,7 @@ function initImages(config) {
 }
 
 /**
- * Gerencia a lógica do Order Bump (+100 páginas de matemática)
+ * Gerencia a lógica do Order Bump (+250 páginas de matemática)
  */
 function initOrderBump(config) {
   const bumpCheckbox = document.getElementById('bump-checkbox');
@@ -72,8 +72,8 @@ function initOrderBump(config) {
 
   if (!bumpCheckbox) return;
 
-  const basePrice = config.product?.priceNumber || 14.99;
-  const bumpPrice = config.orderBump?.priceNumber || 9.90;
+  const basePrice = config.product?.priceNumber || 12.99;
+  const bumpPrice = config.orderBump?.priceNumber || 8.99;
   const totalPrice = basePrice + bumpPrice;
 
   const formatPrice = (val) => val.toFixed(2).replace('.', ',');
@@ -83,7 +83,7 @@ function initOrderBump(config) {
       if (bumpBox) bumpBox.classList.add('is-active');
       if (pricingAmount) pricingAmount.textContent = formatPrice(totalPrice);
       if (pricingLabel) pricingLabel.textContent = 'Valor do pacote completo';
-      if (pricingSub) pricingSub.textContent = '250 págs alfabetização + 100 págs matemática';
+      if (pricingSub) pricingSub.textContent = '500 págs alfabetização + 250 págs matemática';
       if (btnOfferLabel) btnOfferLabel.textContent = `Quero o pacote completo por R$ ${formatPrice(totalPrice)}`;
       if (bumpFeedback) bumpFeedback.removeAttribute('hidden');
       if (mobilePriceNumber) mobilePriceNumber.textContent = `R$ ${formatPrice(totalPrice)}`;
@@ -104,13 +104,15 @@ function initOrderBump(config) {
     updatePricingState(e.target.checked);
   });
 
+  updatePricingState(bumpCheckbox.checked);
+
   // Permite clicar em todo o card do bump para facilitar no celular
   if (bumpBox) {
     bumpBox.addEventListener('click', (e) => {
-      // Se não clicou direto no input, inverte o estado
-      if (e.target !== bumpCheckbox && !e.target.closest('input')) {
+      // Se o clique foi fora do label e fora do input, inverte o estado manualmente
+      if (!e.target.closest('label') && !e.target.closest('input')) {
         bumpCheckbox.checked = !bumpCheckbox.checked;
-        updatePricingState(bumpCheckbox.checked);
+        bumpCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
       }
     });
   }
@@ -140,10 +142,10 @@ function initBuyButtons(config) {
   };
 
   const handleBuyClick = (e) => {
-    e.preventDefault();
     if (isCheckoutConfigured()) {
-      window.location.href = getTargetCheckoutUrl();
+      e.currentTarget.href = getTargetCheckoutUrl();
     } else {
+      e.preventDefault();
       openModal();
     }
   };
@@ -160,6 +162,14 @@ function initBuyButtons(config) {
     modal.setAttribute('hidden', '');
     document.body.style.overflow = '';
   };
+
+  const updateCheckoutLinks = () => {
+    if (isCheckoutConfigured()) {
+      buyButtons.forEach(btn => { btn.href = getTargetCheckoutUrl(); });
+    }
+  };
+  updateCheckoutLinks();
+  if (bumpCheckbox) bumpCheckbox.addEventListener('change', updateCheckoutLinks);
 
   buyButtons.forEach(btn => {
     btn.addEventListener('click', handleBuyClick);

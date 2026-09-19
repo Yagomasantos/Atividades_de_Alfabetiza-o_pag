@@ -1089,6 +1089,30 @@ button {
   box-shadow: 0 2px 6px rgba(23, 94, 99, 0.3);
 }
 
+.order-bump-mark {
+  visibility: hidden;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.order-bump-checkbox:checked + .order-bump-custom-check .order-bump-mark {
+  visibility: visible;
+  animation: bumpIconPop 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.35) forwards;
+}
+
+@keyframes bumpIconPop {
+  0% {
+    transform: scale(0.4) rotate(-15deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
 .order-bump-checkbox:focus-visible + .order-bump-custom-check {
   outline: 3px solid var(--color-teal);
   outline-offset: 2px;

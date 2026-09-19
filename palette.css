@@ -1,0 +1,43 @@
+/* Paleta compartilhada entre a landing page e a área de conta. */
+:root{
+ --brand:#294936;--brand-hover:#1e3828;--brand-soft:#e9efe5;
+ --page:#f8f9f5;--surface:#fff;--ink:#25392d;--muted:#56675b;--line:#d5dfd2;
+ --color-cream:var(--page);--color-cream-light:#fcfdfb;--color-cream-dark:var(--brand-soft);
+ --color-teal:var(--brand);--color-teal-hover:var(--brand-hover);--color-teal-active:#172c20;
+ --color-teal-tint:var(--brand-soft);--color-teal-tint-subtle:#f1f5ee;
+ --color-coral:#8aa17c;--color-coral-soft:#edf2e9;
+ --color-yellow:#b7c99e;--color-yellow-soft:#eff3e8;
+ --color-lavender:#a0b698;--color-lavender-soft:#e9efe5;
+ --color-text-main:var(--ink);--color-text-muted:var(--muted);--color-text-light:#657568;
+ --color-border:var(--line);--color-border-hover:#a5b69f;
+ --shadow-sm:0 4px 12px #2949360f;--shadow-md:0 12px 28px #29493612;--shadow-lg:0 20px 48px #29493618;
+}
+.site-header{background:#f8f9f5f5;border-color:var(--line)}
+.logo,.logo-text,.account-link{color:var(--brand)}
+.logo-icon svg rect{fill:var(--brand)}.logo-icon svg circle{fill:#b7c99e}.logo-icon svg path{fill:var(--page)}
+.btn-primary,.discovery-purchase .btn{background:var(--brand);color:white;box-shadow:0 4px 14px #29493620}
+.btn-primary:hover,.discovery-purchase .btn:hover{background:var(--brand-hover);color:white;box-shadow:0 6px 20px #29493625}
+.btn-secondary{color:var(--brand);border-color:var(--line)}
+.discovery-hero,.account-page{background:var(--page)}
+.discovery-copy h1{color:var(--ink)}.discovery-copy h1>span,.hero-accent{color:#587348}
+.discovery-copy>p,.discovery-note,.discovery-price small,.discovery-steps p,.account-intro p{color:var(--muted)}
+.discovery-kicker,.discovery-explore,.board-top,.board-footnote,.eyebrow{color:var(--brand)}
+.discovery-board{background:var(--brand-soft);border-color:var(--line)}.board-dot{background:#587348}
+.tile-letter{background:#d0dfc5;color:var(--brand)}.tile-word{background:#f8faf4;color:var(--brand)}.tile-number{background:#b7c99e;color:#29412d}
+.discovery-tags>span{background:var(--surface);border-color:var(--line);color:var(--brand)}
+.preview-heading,.discovery-preview figcaption{color:var(--muted)}
+.sample-buttons button{border-color:#a5b69f;color:var(--brand)}.sample-buttons button:hover{background:#d0dfc5}
+.sample-buttons button[aria-pressed=true]{background:var(--brand);border-color:var(--brand);color:white}
+.sample-buttons button[aria-pressed=true]:hover{background:var(--brand-hover)}
+.discovery-steps,.step-number{border-color:var(--line)}.step-number{color:var(--brand)}
+.benefit-card,.content-card,.testimonial-card,.account-card{border-color:var(--line)}
+.tag-yellow,.tag-coral,.tag-lavender,.icon-teal,.icon-coral,.icon-lavender,.icon-yellow{color:var(--brand);background:var(--brand-soft)}
+.offer-section{background:var(--brand-soft)}
+.order-bump-box{background:#f1f5ee;border-color:#a5b69f}.order-bump-box:hover,.order-bump-box.is-active{background:var(--brand-soft);border-color:var(--brand)}
+.site-footer{background:#203c2c;color:#f1f5ee}.footer-desc,.footer-bottom{color:#d5dfd2}
+.account-tabs{background:var(--brand-soft)}.account-form input{border-color:var(--line);color:var(--ink)}
+.account-card small,.account-form small,.profile-data dt{color:var(--muted)}
+.account-message.success{color:var(--brand)}
+
+.print-disclaimer-box,.order-bump-badge,.verified-badge{background:var(--brand-soft);color:var(--brand);border-color:var(--line)}
+.print-disclaimer-box svg,.testimonial-stars,.modal-icon-badge{color:#587348}
